@@ -28,5 +28,4 @@ public class Loan {
     private String dateIssued;
 
     private String dateReturned;
-
 }

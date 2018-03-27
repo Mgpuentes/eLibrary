@@ -1,13 +1,13 @@
 package com.puentes.elibrary.backend.persistance.domain.Author;
 
+import com.puentes.elibrary.backend.persistance.domain.Book.Book;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Matthew on 3/27/2018.
@@ -28,4 +28,7 @@ public class Author {
     private String firstName;
 
     private String lastName;
+
+    @ManyToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Book> books = new HashSet<>();
 }
