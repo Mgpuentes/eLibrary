@@ -29,6 +29,6 @@ public class Author {
 
     private String lastName;
 
-    @ManyToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Book> books = new HashSet<>();
 }

@@ -1,5 +1,6 @@
 package com.puentes.elibrary.backend.persistance.domain.Book;
 
+import com.puentes.elibrary.backend.persistance.domain.Author.Author;
 import com.puentes.elibrary.backend.persistance.domain.User.User;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -28,6 +29,6 @@ public class Book {
 
     private String publishDate;
 
-    @ManyToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<User> user = new HashSet<>();
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Author> authors = new HashSet<>();
 }
