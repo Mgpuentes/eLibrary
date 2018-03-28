@@ -1,6 +1,6 @@
 package com.puentes.elibrary.backend.service;
 
-import com.puentes.elibrary.backend.persistance.domain.Book.Book;
+import com.puentes.elibrary.backend.persistance.domain.book.Book;
 
 public interface BookService {
 

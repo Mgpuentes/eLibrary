@@ -1,6 +1,6 @@
 package com.puentes.elibrary.backend.service;
 
-import com.puentes.elibrary.backend.persistance.domain.Loan.Loan;
+import com.puentes.elibrary.backend.persistance.domain.book.Loan;
 
 public interface LoanService {
 

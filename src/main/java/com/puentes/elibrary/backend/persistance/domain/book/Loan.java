@@ -1,4 +1,4 @@
-package com.puentes.elibrary.backend.persistance.domain.Loan;
+package com.puentes.elibrary.backend.persistance.domain.book;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

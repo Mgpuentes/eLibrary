@@ -1,6 +1,6 @@
 package com.puentes.elibrary.backend.service;
 
-import com.puentes.elibrary.backend.persistance.domain.Author.Author;
+import com.puentes.elibrary.backend.persistance.domain.book.Author;
 
 import java.util.List;
 

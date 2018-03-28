@@ -1,6 +1,6 @@
 package com.puentes.elibrary.backend.persistance.repositories;
 
-import com.puentes.elibrary.backend.persistance.domain.Book.Book;
+import com.puentes.elibrary.backend.persistance.domain.book.Book;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
 package com.puentes.elibrary.backend.service.impl;
 
-import com.puentes.elibrary.backend.persistance.domain.Author.Author;
+import com.puentes.elibrary.backend.persistance.domain.book.Author;
 import com.puentes.elibrary.backend.persistance.repositories.AuthorRepository;
 import com.puentes.elibrary.backend.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;

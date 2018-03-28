@@ -1,6 +1,6 @@
 package com.puentes.elibrary.backend.service.impl;
 
-import com.puentes.elibrary.backend.persistance.domain.Loan.Loan;
+import com.puentes.elibrary.backend.persistance.domain.book.Loan;
 import com.puentes.elibrary.backend.persistance.repositories.LoanRepository;
 import com.puentes.elibrary.backend.service.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
