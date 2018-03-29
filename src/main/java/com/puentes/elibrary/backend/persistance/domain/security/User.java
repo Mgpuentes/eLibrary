@@ -1,6 +1,8 @@
 package com.puentes.elibrary.backend.persistance.domain.security;
 
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -17,12 +19,23 @@ import java.util.Set;
 
 @Data
 @Entity
+@Table(name = "users")
 @ToString(exclude = {"userRoles"})
 @EqualsAndHashCode(exclude = {"userRoles"})
 public class User implements UserDetails {
 
+    @GenericGenerator(
+            name = "e_Library_StoreSequenceGenerator",
+            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+            parameters = {
+                    @Parameter(name = "sequence_name", value = "E_Library_StoreSequence"),
+                    @Parameter(name = "initial_value", value = "1"),
+                    @Parameter(name = "increment_size", value = "1")
+            }
+    )
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "e_Library_StoreSequenceGenerator")
     private Long id;
 
     private String username;
@@ -34,6 +47,11 @@ public class User implements UserDetails {
     private String email;
 
     private  String password;
+
+    private boolean enabled = true;
+    private boolean accountNonExpired = true;
+    private boolean accountNonLocked = true;
+    private boolean credentialsNonExpired = true;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<UserRole> userRoles = new HashSet<>();

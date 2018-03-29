@@ -35,6 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/webjars/**",
             "/css/**",
             "/js/**",
+            "/user/**",
+//            "/h2-console/**",
             "/images/**",
             "/about/**",
             "/contact/**",
@@ -83,8 +85,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(PUBLIC_MATCHERS).permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().defaultSuccessUrl("/")
-                .failureUrl("/login?error");
+                .formLogin().loginPage("/login").defaultSuccessUrl("/")
+                .failureUrl("/login?error").permitAll()
+                .and()
+                .logout().permitAll();
     }
 
     @Autowired
