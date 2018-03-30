@@ -22,7 +22,7 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @ToString(callSuper = true, exclude = "bookAuthors")
-@EqualsAndHashCode(callSuper = false, exclude = "bookAuthors")
+@EqualsAndHashCode(callSuper = false, of = {"isbn"})
 public class Book {
 
     @GenericGenerator(
@@ -39,7 +39,6 @@ public class Book {
     @GeneratedValue(generator = "e_Library_StoreSequenceGenerator")
     private Long id;
 
-    @Column(unique = true, nullable = false, updatable = false)
     private Long isbn;
 
     private String title;

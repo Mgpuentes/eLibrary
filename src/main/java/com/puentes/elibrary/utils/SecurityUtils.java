@@ -15,6 +15,7 @@ public abstract class SecurityUtils {
         throw new AssertionError("Non Instantiable");
     }
 
+
     public static BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(12, new SecureRandom("SALT".getBytes()));
     }

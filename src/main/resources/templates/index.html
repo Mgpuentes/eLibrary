@@ -8,13 +8,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog Home - Start Bootstrap Template</title>
+    <title>eLibrary</title>
 
     <!-- Bootstrap core CSS -->
     <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" th:href="@{/css/blog-home.css}" />
+
+    <link rel="stylesheet" th:href="@{/webjars/jquery-ui/1.12.1/jquery-ui.theme.min.css}">
+
+    <script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js}"></script>
+
+    <!--Styles for FontAwesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 
 </head>
 
@@ -31,23 +38,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="#" class="navbar-brand">Brand</a>
+            <a href="#" class="navbar-brand">eLibrary</a>
         </div>
         <!-- Collection of nav links, forms, and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Profile</a></li>
-                <li class="dropdown">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">Messages <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Inbox</a></li>
-                        <li><a href="#">Drafts</a></li>
-                        <li><a href="#">Sent Items</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Trash</a></li>
-                    </ul>
-                </li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/profile}">Profile</a></li>
             </ul>
             <form class="navbar-form navbar-left">
                 <div class="input-group">
@@ -58,8 +54,8 @@
                 </div>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a th:href="@{/login}" sec:authorize="!isAuthenticated()">Login</a></li>
-                <li sec:authorize="isAuthenticated()"><a sec:authentication="name">Bob</a></li>
+                <li><a th:href="@{/login}" sec:authorize="!isAuthenticated()"><i class="far fa-user"></i> Login</a></li>
+                <!--<li sec:authorize="isAuthenticated()"><a sec:authentication="name">Bob</a></li>-->
                 <li><a th:href="@{/logout}" sec:authorize="isAuthenticated()">Logout</a></li>
             </ul>
         </div>
@@ -73,45 +69,15 @@
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
-            <h1 class="my-4">Page Heading
-                <small>Secondary Text</small>
-            </h1>
-
-            <!-- Blog Post -->
-            <div class="card mb-4">
-                <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+            <!-- Book Posts -->
+            <div th:each="book : ${books} " class="card mb-4">
+                <img class="card-img-top" th:src="@{/images/book.jpeg}" alt="Card image cap">
                 <div class="card-body">
-                    <h2 class="card-title">Post Title</h2>
+                    <h2 class="card-title" th:text="${book.title}"></h2>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
                     <a href="#" class="btn btn-primary">Read More &rarr;</a>
-                </div>
-                <div class="card-footer text-muted">
-                    Posted on January 1, 2017 by
-                    <a href="#">Start Bootstrap</a>
-                </div>
-            </div>
-
-            <!-- Blog Post -->
-            <div class="card mb-4">
-                <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
-                <div class="card-body">
-                    <h2 class="card-title">Post Title</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                    <a href="#" class="btn btn-primary">Read More &rarr;</a>
-                </div>
-                <div class="card-footer text-muted">
-                    Posted on January 1, 2017 by
-                    <a href="#">Start Bootstrap</a>
-                </div>
-            </div>
-
-            <!-- Blog Post -->
-            <div class="card mb-4">
-                <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
-                <div class="card-body">
-                    <h2 class="card-title">Post Title</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                    <a href="#" class="btn btn-primary">Read More &rarr;</a>
+                    <a th:href="@{/delete(isbn=${book.id})}" class="btn btn-primary">Delete &rarr;</a>
+                    <a th:href="@{/updateBook(isbn=${book.id})}" class="btn btn-primary">Update &rarr;</a>
                 </div>
                 <div class="card-footer text-muted">
                     Posted on January 1, 2017 by
@@ -139,7 +105,7 @@
                 <h5 class="card-header">Search</h5>
                 <div class="card-body">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
+                        <input id="search" type="text" class="form-control" placeholder="Search for Books...">
                         <span class="input-group-btn">
                   <button class="btn btn-secondary" type="button">Go!</button>
                 </span>
@@ -186,7 +152,7 @@
             <div class="card my-4">
                 <h5 class="card-header">Side Widget</h5>
                 <div class="card-body">
-                    You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+                    Welcome to eLibrary
                 </div>
             </div>
 
@@ -201,14 +167,16 @@
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2018</p>
+        <p class="m-0 text-center text-white">eLibrary 2018</p>
     </div>
     <!-- /.container -->
 </footer>
 
 <!-- Bootstrap core JavaScript -->
 <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/script.js}"></script>
 
 </body>
 

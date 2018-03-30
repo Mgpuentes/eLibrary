@@ -24,16 +24,32 @@ public class AuthorServiceImpl  implements AuthorService {
         this.authorRepository = authorRepository;
     }
 
+    /**
+     * Create the author with the instance given.
+     *
+     * @param author the author to save
+     * @return
+     */
     @Override
     public Author saveAuthor(Author author) {
         return authorRepository.save(author);
     }
 
+    /**
+     * Delete author with given author instance.
+     *
+     * @param author author to be deleted.
+     */
     @Override
     public void deleteAuthor(Author author) {
         authorRepository.delete(author);
     }
 
+    /**
+     * Retrieve list of all authors.
+     *
+     * @return
+     */
     @Override
     public List getAuthors() {
         return null;
@@ -44,6 +60,12 @@ public class AuthorServiceImpl  implements AuthorService {
         return null;
     }
 
+    /**
+     * Retrieves the author with the given id.
+     *
+     * @param id the id used to retrieve author.
+     * @return the author that matches given id.
+     */
     @Override
     public Author getAuthorById(Long id) {
         return authorRepository.findById(id).orElse(null);

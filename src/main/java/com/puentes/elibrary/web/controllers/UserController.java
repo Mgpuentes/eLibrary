@@ -1,8 +1,12 @@
 package com.puentes.elibrary.web.controllers;
 
+import com.puentes.elibrary.backend.persistance.domain.book.Author;
+import com.puentes.elibrary.backend.persistance.domain.book.Book;
+import com.puentes.elibrary.backend.persistance.domain.book.BookAuthor;
 import com.puentes.elibrary.backend.persistance.domain.security.User;
 import com.puentes.elibrary.backend.persistance.domain.security.UserRole;
 import com.puentes.elibrary.backend.persistance.repositories.RoleRepository;
+import com.puentes.elibrary.backend.service.BookService;
 import com.puentes.elibrary.backend.service.UserService;
 import com.puentes.elibrary.enums.RolesEnum;
 import lombok.extern.slf4j.Slf4j;
@@ -32,13 +36,14 @@ public class UserController {
     @Autowired
     RoleRepository roleRepository;
 
+
     /**
      * Load user object to front through model
      */
-    @GetMapping("/user")
+    @GetMapping("/register")
     public String user(Model model) {
         model.addAttribute("signUpUser", new User());
-        return "user";
+        return "register";
     }
 
     @PostMapping(value = "/signup")
@@ -48,7 +53,7 @@ public class UserController {
         userRoles.add(new UserRole(user, roleRepository.findById(RolesEnum.USER.getId()).orElse(null)));
         userService.createUser(user, userRoles);
 
-        return "redirect:/user";
+        return "redirect:/login";
     }
 
     @GetMapping("/login")
@@ -60,4 +65,5 @@ public class UserController {
     public String profile() {
         return "profile";
     }
+
 }

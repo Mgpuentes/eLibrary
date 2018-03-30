@@ -35,21 +35,46 @@ public class UserServiceImpl implements UserService {
         this.roleRepository = roleRepository;
     }
 
+    /**
+     * Create user with user instance given.
+     *
+     * @param user the user to save.
+     * @return persisted user
+     */
     @Override
+    @Transactional
     public User saveUser(User user) {
         return userRepository.save(user);
     }
 
+    /**
+     * Delete user by given user instance.
+     *
+     * @param user user to be deleted.
+     */
     @Override
     public void deleteUser(User user) {
         userRepository.delete(user);
     }
 
+    /**
+     * Retrieves user by given id.
+     *
+     * @param id id used to retrieve user.
+     * @return user that matches given id.
+     */
     @Override
     public User getUserById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
 
+    /**
+     * Create user with specified parameters.
+     *
+     * @param user user to be created
+     * @param userRoles user role assigned
+     * @return user created
+     */
     @Override
     @Transactional
     public User createUser(User user, Set<UserRole> userRoles) {
@@ -76,6 +101,12 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     * Helper method which takes multiple arguments and validates each instance not being null.
+     *
+     * @param objects
+     * @throws IllegalArgumentException
+     */
     private void validateInputs(Object ... objects) throws IllegalArgumentException {
 
         for (Object object : objects) {

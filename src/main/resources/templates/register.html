@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet" />
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-5 col-md-3">
+            <a th:href="@{/}"><h2>eLibrary Register</h2></a>
+            <form th:action="@{/signup}" th:object="${signUpUser}" method="post" role="form">
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input th:field="*{firstName}" type="text" class="form-control" id="firstName">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input name="lastName" type="text" class="form-control" id="lastName">
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email:</label>
+                    <input name="email" type="email" class="form-control" id="registerEmail">
+                </div>
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input name="username" type="text" class="form-control" id="username">
+                </div>
+                <div class="form-group">
+                    <label for="registerPwd">Password:</label>
+                    <input name="password" type="password" class="form-control" id="registerPwd">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

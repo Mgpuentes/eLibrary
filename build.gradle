@@ -40,7 +40,14 @@ dependencies {
     // https://mvnrepository.com/artifact/org.webjars/bootstrap
     compile group: 'org.webjars', name: 'bootstrap', version: '3.3.7-1'
 
-    // https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity4
+    // https://mvnrepository.com/artifact/org.webjars/jquery-ui
+    compile group: 'org.webjars', name: 'jquery-ui', version: '1.12.1'
+
+	// https://mvnrepository.com/artifact/org.webjars/font-awesome
+	compile group: 'org.webjars', name: 'font-awesome', version: '5.0.6'
+
+
+	// https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity4
     compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4'
 
 	runtime('mysql:mysql-connector-java')

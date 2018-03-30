@@ -42,7 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/contact/**",
             "/authors/**",
             "/signup/**",
-            "/"
+            "/",
+            "/register"
 
     };
 
